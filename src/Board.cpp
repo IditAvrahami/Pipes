@@ -94,8 +94,10 @@ void Board::makeTheBoard(const std::pair<int, int>& source, const std::pair<int,
 	int s, t;
 	s = (*m_currentBoard[source.first][source.second])->getVertex();
 	
-	numberOfVertex();
+	//numberOfVertex();
+	//need to do
 	buildGraph();
+
 	for (size_t i = 0; i < dots.size(); i++)
 	{
 		t = (*m_currentBoard[dots[i].first][dots[i].second])->getVertex();
@@ -108,6 +110,8 @@ void Board::makeTheBoard(const std::pair<int, int>& source, const std::pair<int,
 	t = (*m_currentBoard[target.first][target.second])->getVertex();
 	m_graph.BFS(s, t);
 	road += m_graph.getVertex();
-
+	
+	//need to do
+	commited_pipes();
 }
 
