@@ -30,6 +30,8 @@ public:
 	bool ifCanDown(int i)const;
 	bool ifCanRight(int j)const;
 	bool ifCanLeft(int j)const;
+	size_t getRows()const;
+	size_t getCols()const;
 
 private:
 	size_t m_rows;

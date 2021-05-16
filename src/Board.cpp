@@ -309,3 +309,13 @@ bool Board::ifCanLeft(int j) const
 		return true;
 	return false;
 }
+
+size_t Board::getRows() const
+{
+	return m_rows;
+}
+
+size_t Board::getCols() const
+{
+	return m_cols;
+}

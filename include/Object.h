@@ -11,8 +11,8 @@ public:
 	virtual void setFull(bool x);
 	virtual int getVertex()const { return m_myVertexNumber; };
 	virtual void setSprite(const sf::Texture&);
-	virtual void printObject(sf::RenderWindow& window)const = 0;
-	virtual void setLocation(const sf::Vector2f& location) = 0;
+	virtual void printObject(sf::RenderWindow& window)const = 0; //TO DO
+	virtual void setLocation(const sf::Vector2f& location) {}; // TO DO
 
 protected:
 	int m_myVertexNumber;
