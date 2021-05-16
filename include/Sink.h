@@ -8,7 +8,6 @@ class Sink : public Object
 public:
 	Sink(int x) :Object(x) {};
 	~Sink ()= default;
-	virtual bool ifFull() { return true; };
 	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:

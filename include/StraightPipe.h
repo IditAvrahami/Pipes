@@ -9,7 +9,6 @@ public:
 	StraightPipe(int x) :RotationObject(x) {};
 	~StraightPipe() = default;
 	//virtual void rotation(const Direction& direction);
-	virtual bool ifFull() { return true; };
 	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:

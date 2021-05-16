@@ -9,9 +9,8 @@ public:
 	RotationObject(int x) :Object(x){};
 	~RotationObject()=default;
 //	virtual void rotation(const Direction& direction) = 0;
-	virtual bool ifFull() = 0;
 	virtual void printObject(sf::RenderWindow& window)const = 0;
 
 private:
-
+	
 };

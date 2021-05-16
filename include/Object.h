@@ -5,14 +5,20 @@
 class Object
 {
 public:
-	Object(int x)  : m_myVertexNumber(x) {};
+	Object(int x);
 	~Object() = default;
-	virtual bool ifFull() = 0;
-	virtual void printObject(sf::RenderWindow& window)const = 0;
+	virtual bool ifFull()const;
+	virtual void setFull(bool x);
 	virtual int getVertex()const { return m_myVertexNumber; };
+	virtual void setSprite(const sf::Texture&);
+	virtual void printObject(sf::RenderWindow& window)const = 0;
+	virtual void setLocation(const sf::Vector2f& location) = 0;
 
 protected:
 	int m_myVertexNumber;
+	sf::Sprite m_objectPng;
+	bool m_full;
+
 private:
 	
 };

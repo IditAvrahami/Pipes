@@ -8,7 +8,6 @@ class Tap  : public RotationObject
 public:
 	Tap(int x) :RotationObject(x) {};
 	~Tap() = default;
-	virtual bool ifFull() { return true; };
 	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
