@@ -1,16 +1,16 @@
 #pragma once
-#include "Pipe.h"
+#include "RotationObject.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
-class  StraightPipe: public Pipe
+class  StraightPipe: public RotationObject // pipe
 {
 public:
-	StraightPipe();
-	~StraightPipe();
-	virtual void rotation(const Direction& direction);
-	virtual bool ifFull();
-	virtual void printObject(sf::RenderWindow& window)const;
+	StraightPipe(int x) :RotationObject(x) {};
+	~StraightPipe() = default;
+	//virtual void rotation(const Direction& direction);
+	virtual bool ifFull() { return true; };
+	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
 	sf::Sprite m_pipePng;

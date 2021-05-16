@@ -6,10 +6,10 @@
 class Sink : public Object
 {
 public:
-	Sink ();
-	~Sink ();
-	virtual bool ifFull();
-	virtual void printObject(sf::RenderWindow& window)const;
+	Sink(int x) :Object(x) {};
+	~Sink ()= default;
+	virtual bool ifFull() { return true; };
+	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
 	sf::Sprite m_sinkPng;

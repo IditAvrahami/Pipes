@@ -21,6 +21,15 @@ public:
 	std::pair<int, int> checkCollision(std::pair<int, int>& target)const;
 	void makeTheBoard(const std::pair<int, int>&,const std::pair<int, int>&,const std::vector<std::pair<int, int>>&);
 	void buildGraph();
+	void commited_pipes(const std::vector<int>& road);
+	void bulidBoard(const std::vector<std::vector<bool>>&  boolRoad);
+	int numberOfNeighboors(const std::vector<std::vector<bool>>& boolRoad,int i,int j);
+	std::unique_ptr<RotationObject> kindOfPipe(const std::vector<std::vector<bool>>& boolRoad, int i, int j)const;
+	std::unique_ptr<RotationObject> RandomPipe(int i,int j)const;
+	bool ifCanUp(int i)const;
+	bool ifCanDown(int i)const;
+	bool ifCanRight(int j)const;
+	bool ifCanLeft(int j)const;
 
 private:
 	size_t m_rows;

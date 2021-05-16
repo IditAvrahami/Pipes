@@ -8,6 +8,7 @@
 Graph::Graph(int vertexAmount) : m_vertexAmount(vertexAmount) //	this->V = vertexAmount;
 {
     m_adj.resize(vertexAmount); //	adj = new list<int>[V];
+    m_father.resize(vertexAmount);
     //insert to any vertex his father
     for (int i = 0; i < vertexAmount; i++)
         m_father[i] = -1;
@@ -23,8 +24,9 @@ void Graph::BFS(int s, int t)
 {
     m_vertex.resize(0);
     // Mark all the vertices as not visited
-    std::vector<bool>(v) visited;//  bool* visited = new bool[V];
-    for (int i = 0; i < m_visited; i++)
+    std::vector<bool> visited ;//  bool* visited = new bool[V];
+    visited.resize(m_vertexAmount);
+    for (int i = 0; i < visited.size() ; i++)
         visited[i] = false;
 
     // Create a queue for BFS
@@ -66,16 +68,18 @@ void Graph::BFS(int s, int t)
     }
 
 
-    while (m_father[t] != -2 || m_father[t]!= -1)
+    while (t != -2)
     {
         m_vertex.push_back(t);
         t = m_father[t];
     }
+    /*
     //the t vertex accessible
     if (m_father[t] == -2)
         return true;
     //the t vertex is not accessible
     return false;
+    */
 }
 
 std::vector<int> Graph::getVertex() const
@@ -87,10 +91,11 @@ void Graph::setVertexes(const int newsize)
 {
     m_vertexAmount = newsize;
     m_adj.resize(m_vertexAmount);
+    m_father.resize(m_vertexAmount);
     for (int i = 0; i < m_vertexAmount; i++)
         m_adj[i].clear();
     //insert to any vertex his father
-    for (int i = 0; i < vertexAmount; i++)
+    for (int i = 0; i < m_vertexAmount; i++)
         m_father[i] = -1;
     m_vertex.resize(0);
 }

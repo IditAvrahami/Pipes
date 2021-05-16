@@ -6,10 +6,10 @@
 class Tap  : public RotationObject
 {
 public:
-	Tap(int number) {};
+	Tap(int x) :RotationObject(x) {};
 	~Tap() = default;
-	virtual bool ifFull() {};
-	virtual void printObject(sf::RenderWindow& window)const;
+	virtual bool ifFull() { return true; };
+	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
 	sf::Sprite m_tapPng;

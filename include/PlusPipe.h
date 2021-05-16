@@ -1,14 +1,14 @@
 #pragma once
-#include "Pipe.h"
+#include "RotationObject.h"
 
-class PlusPipe : public Pipe
+class PlusPipe : public RotationObject // pipe
 {
 public:
-	PlusPipe();
-	~PlusPipe();
+	PlusPipe(int x) :RotationObject(x) {};
+	~PlusPipe() = default;
 //	virtual void rotation(const Direction& direction);
-	virtual bool ifFull();
-	virtual void printObject(sf::RenderWindow& window)const;
+	virtual bool ifFull() { return true; };
+	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
 

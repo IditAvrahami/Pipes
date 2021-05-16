@@ -3,7 +3,8 @@
 
 int main()
 {
-    Board b();
+    Board b{};
+    b.createBoard();
     auto window = sf::RenderWindow(sf::VideoMode(300, 300), "Example");
 
     while (window.isOpen())
