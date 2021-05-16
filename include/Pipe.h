@@ -8,7 +8,7 @@ class Pipe : public RotationObject
 public:
 	Pipe();
 	~Pipe();
-	virtual void rotation(const Direction& direction) {};
+//	virtual void rotation(const Direction& direction) {};
 	virtual bool ifFull();
 	virtual void printObject(sf::RenderWindow& window)const;
 

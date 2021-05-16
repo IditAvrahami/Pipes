@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
+#include "Board.h"
 
 int main()
 {
+    Board b();
     auto window = sf::RenderWindow(sf::VideoMode(300, 300), "Example");
 
     while (window.isOpen())

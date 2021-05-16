@@ -16,6 +16,7 @@ public:
 
     std::vector<int> getVertex()const;
     
+    void setVertexes(const int newsize);
 
 private:
     int m_vertexAmount;    // No. of vertices

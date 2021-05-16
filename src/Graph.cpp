@@ -1,3 +1,4 @@
+#include "..\include\Graph.h"
 #include "Graph.h"
 #include <iostream>
 #include <vector>
@@ -80,4 +81,16 @@ void Graph::BFS(int s, int t)
 std::vector<int> Graph::getVertex() const
 {
     return m_vertex;
+}
+
+void Graph::setVertexes(const int newsize)
+{
+    m_vertexAmount = newsize;
+    m_adj.resize(m_vertexAmount);
+    for (int i = 0; i < m_vertexAmount; i++)
+        m_adj[i].clear();
+    //insert to any vertex his father
+    for (int i = 0; i < vertexAmount; i++)
+        m_father[i] = -1;
+    m_vertex.resize(0);
 }

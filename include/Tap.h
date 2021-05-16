@@ -6,8 +6,9 @@
 class Tap  : public RotationObject
 {
 public:
-	Tap();
-	~Tap();
+	Tap(int number) {};
+	~Tap() = default;
+	virtual bool ifFull() {};
 	virtual void printObject(sf::RenderWindow& window)const;
 
 private:
