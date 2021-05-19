@@ -5,14 +5,14 @@
 class Object
 {
 public:
-	Object(int x);
+	Object(int x, int indexToPic);
 	~Object() = default;
 	virtual bool ifFull()const;
 	virtual void setFull(bool x);
 	virtual int getVertex()const { return m_myVertexNumber; };
-	virtual void setSprite(const sf::Texture&);
-	virtual void printObject(sf::RenderWindow& window)const = 0; //TO DO
-	virtual void setLocation(const sf::Vector2f& location) {}; // TO DO
+	virtual void setSprite(const sf::Texture&) ;
+	void printObject(sf::RenderWindow& window)const ; 
+	virtual void setLocation(const sf::Vector2f& location);
 
 protected:
 	int m_myVertexNumber;

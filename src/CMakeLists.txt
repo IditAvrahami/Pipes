@@ -2,4 +2,5 @@
 								  "Board.cpp"
 								  "Graph.cpp"
 								  "Object.cpp"
-								  "Controller.cpp")
+								  "Controller.cpp"
+								  "GraphicDesign.cpp")

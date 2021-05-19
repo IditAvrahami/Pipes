@@ -6,6 +6,7 @@
 #include "TPipe.h"
 #include "StraightPipe.h"
 #include "CornerPipe.h"
+#include "Utilities.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iterator>
@@ -22,6 +23,7 @@ Board::Board() : m_cols(5), m_rows(5), m_number(0),m_graph(25)
 //	m_rows = (rand() % 10) + 5; // between 5-15
 //	m_cols = (rand() % 10) + 5;
 	m_graph.setVertexes(m_rows * m_cols);
+	createBoard();
 }
 
 void Board::createBoard()
@@ -34,7 +36,7 @@ void Board::createBoard()
 	//the start point of the level
 	source = randomPoint();
 	//create the tap object in this place
-	m_currentBoard[source.first][source.second] = std::make_unique<Tap>(source.first * m_cols + source.second);
+	m_currentBoard[source.first][source.second] = std::make_unique<Tap>(source.first * m_cols + source.second, TAP);
 
 
 	//the target point of the level
@@ -42,7 +44,7 @@ void Board::createBoard()
 	//check if the start and target points collide, if so random the point again
 	target = checkCollision(target);
 	//create the sink object in this place
-	m_currentBoard[target.first][target.second] = std::make_unique<Sink>(target.first * m_cols + target.second); 
+	m_currentBoard[target.first][target.second] = std::make_unique<Sink>(target.first * m_cols + target.second, SINK); 
 
 
 	//create dots in random place so the level wont be so easy
@@ -52,11 +54,19 @@ void Board::createBoard()
 	{
 		dots[i] = randomPoint();
 		checkCollision(dots[i]);
-		m_currentBoard[dots[i].first][dots[i].second] = std::make_unique<PlusPipe>(dots[i].first * m_cols + dots[i].second);
+		m_currentBoard[dots[i].first][dots[i].second] = std::make_unique<PlusPipe>(dots[i].first * m_cols + dots[i].second, PLUS_PIPE);
 	}
 	//create the level itself, make sure the level is solveable
 	makeTheBoard(source, target, dots);
 
+}
+
+void Board::createNewLevel()
+{
+	//	m_rows = (rand() % 10) + 5; // between 5-15
+//	m_cols = (rand() % 10) + 5;
+	m_graph.setVertexes(m_rows * m_cols);
+	createBoard();
 }
 
 void Board::resizeBoard()
@@ -193,11 +203,11 @@ void Board::bulidBoard(const std::vector < std::vector<bool>>& boolRoad)
 				{
 					if (numberOfNeighboors(boolRoad, i, j) == 4)
 					{
-						m_currentBoard[i][j] = std::make_unique<PlusPipe>(i * m_cols + j);
+						m_currentBoard[i][j] = std::make_unique<PlusPipe>(i * m_cols + j, PLUS_PIPE);
 					}
 					else if (numberOfNeighboors(boolRoad, i, j) == 3)
 					{
-						m_currentBoard[i][j] = std::make_unique<TPipe>(i * m_cols + j);
+						m_currentBoard[i][j] = std::make_unique<TPipe>(i * m_cols + j, TPIPE);
 					}
 					else if (numberOfNeighboors(boolRoad, i, j) == 2)
 					{
@@ -205,7 +215,7 @@ void Board::bulidBoard(const std::vector < std::vector<bool>>& boolRoad)
 					}
 					else if (numberOfNeighboors(boolRoad, i, j) == 1)
 					{
-						m_currentBoard[i][j] = std::make_unique<StraightPipe>(i * m_cols + j);
+						m_currentBoard[i][j] = std::make_unique<StraightPipe>(i * m_cols + j, STRIGHT_PIIPE);
 					}
 				}
 				else
@@ -258,28 +268,28 @@ std::unique_ptr<RotationObject> Board::kindOfPipe(const std::vector<std::vector<
 		index1 = i - 1;
 		index2 = i + 1;
 		if (boolRoad[index1][j] == true && boolRoad[index2][j] == true)
-			return std::make_unique<StraightPipe>(i * m_cols + j);
+			return std::make_unique<StraightPipe>(i * m_cols + j, STRIGHT_PIIPE);
 	}
 	if (ifCanLeft(j) && ifCanRight(j))
 	{
 		index1 = j - 1;
 		index2 = j + 1;
 		if (boolRoad[i][index1] == true && boolRoad[i][index2] == true)
-			return std::make_unique<StraightPipe>(i * m_cols + j);
+			return std::make_unique<StraightPipe>(i * m_cols + j,STRIGHT_PIIPE);
 	}
-	return std::make_unique<CornerPipe>(i * m_cols + j);
+	return std::make_unique<CornerPipe>(i * m_cols + j, CORNER_PIPE);
 }
 
 std::unique_ptr<RotationObject> Board::RandomPipe(int i, int j) const
 {
 	int random = rand() % 12;
 	if (random < 6)
-		return std::make_unique<StraightPipe>(i * m_cols + j);
+		return std::make_unique<StraightPipe>(i * m_cols + j, STRIGHT_PIIPE);
 	if (random < 9)
-		return std::make_unique<CornerPipe>(i * m_cols + j);
+		return std::make_unique<CornerPipe>(i * m_cols + j, CORNER_PIPE);
 	if (random < 11)
-		return std::make_unique<TPipe>(i * m_cols + j);
-	return std::make_unique<PlusPipe>(i * m_cols + j);
+		return std::make_unique<TPipe>(i * m_cols + j, TPIPE);
+	return std::make_unique<PlusPipe>(i * m_cols + j, PLUS_PIPE);
 }
 
 bool Board::ifCanUp(int i) const

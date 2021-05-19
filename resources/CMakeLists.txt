@@ -1,2 +1,4 @@
-﻿#configure_file ("levels.txt" ${CMAKE_BINARY_DIR} COPYONLY)
-#configure_file ("level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+﻿configure_file ("corner-pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("plus_pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("stright_pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("t_pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)

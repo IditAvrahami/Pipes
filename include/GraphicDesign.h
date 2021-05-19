@@ -6,9 +6,11 @@
 class GraphicDesign
 {
 public:
-	GraphicDesign();
-	~GraphicDesign(); // close all photos
+	~GraphicDesign() = default; // close all photos
+	sf::Texture getPicture(int index)const;
+	static GraphicDesign& instance();
 
 private:
+	GraphicDesign(); // open pic
 	std::vector<sf::Texture> m_pictures;
 };

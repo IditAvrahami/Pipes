@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
+#include "Controller.h"
 
 int main()
 {
-    Board b{};
-    b.createBoard();
+	Controller a{};
+	a.startGame();
 }

@@ -5,6 +5,7 @@
 #include <SFML/Window.hpp>
 
 
+
 class Controller
 {
 public:
@@ -12,14 +13,14 @@ public:
 	~Controller() = default;
 	void startGame();
 	void nextLevel();
-	void createBoard();
-	void endGame();
-	void getLevel();
+	void endGame(); // print bye message and picture
 	int getClicks()const;
-	//void addClick();
-	
+	std::pair<int, int> toIndex(const sf::Vector2f &location)const;
+	bool ifValidClick(int)const;
+
 private:
 	int m_clicks;
+	int m_level;
 	Board m_board;
 	sf::RenderWindow m_window;
 };

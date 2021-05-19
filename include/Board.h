@@ -15,6 +15,7 @@ public:
 	Board();
 	~Board() = default;
 	void createBoard();
+	void createNewLevel();
 	void resizeBoard();
 	void emptyBoard();
 	std::pair<int, int> randomPoint()const;

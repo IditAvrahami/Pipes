@@ -6,10 +6,10 @@
 class Sink : public Object
 {
 public:
-	Sink(int x) :Object(x) {};
+	Sink(int x, int i) :Object(x,i) {};
 	~Sink ()= default;
-	virtual void printObject(sf::RenderWindow& window)const {};
+//	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
-	sf::Sprite m_sinkPng;
+	//sf::Sprite m_sinkPng;
 };

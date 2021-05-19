@@ -6,10 +6,10 @@
 class RotationObject : public Object
 {
 public:
-	RotationObject(int x) :Object(x){};
+	RotationObject(int x, int i) :Object(x, i){};
 	~RotationObject()=default;
 //	virtual void rotation(const Direction& direction) = 0;
-	virtual void printObject(sf::RenderWindow& window)const = 0;
+//	virtual void printObject(sf::RenderWindow& window)const = 0;
 
 private:
 	

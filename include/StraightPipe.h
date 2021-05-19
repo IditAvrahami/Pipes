@@ -6,12 +6,12 @@
 class  StraightPipe: public RotationObject // pipe
 {
 public:
-	StraightPipe(int x) :RotationObject(x) {};
+	StraightPipe(int x, int i) :RotationObject(x,i) {};
 	~StraightPipe() = default;
 	//virtual void rotation(const Direction& direction);
-	virtual void printObject(sf::RenderWindow& window)const {};
+//	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
-	sf::Sprite m_pipePng;
+	//sf::Sprite m_pipePng;
 
 };

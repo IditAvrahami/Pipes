@@ -6,11 +6,11 @@
 class Tap  : public RotationObject
 {
 public:
-	Tap(int x) :RotationObject(x) {};
+	Tap(int x, int i) :RotationObject(x, i) {};
 	~Tap() = default;
-	virtual void printObject(sf::RenderWindow& window)const {};
+//	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:
-	sf::Sprite m_tapPng;
+	//sf::Sprite m_tapPng;
 
 };
