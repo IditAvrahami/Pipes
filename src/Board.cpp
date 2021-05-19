@@ -292,6 +292,17 @@ std::unique_ptr<RotationObject> Board::RandomPipe(int i, int j) const
 	return std::make_unique<PlusPipe>(i * m_cols + j, PLUS_PIPE);
 }
 
+void Board::printBoard(sf::RenderWindow& window)const
+{
+	for (size_t i = 0; i < m_rows; i++)
+	{
+		for (size_t j = 0; j < m_cols ; j++)
+		{
+			m_currentBoard[i][j]->printObject(window);
+		}
+	}
+}
+
 bool Board::ifCanUp(int i) const
 {
 	if (i != 0)

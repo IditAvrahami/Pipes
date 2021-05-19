@@ -20,13 +20,13 @@ void Controller::startGame()
             switch (event.type)
             {
             case event.MouseButtonPressed:
-                
+                m_board.printBoard(m_window);
                 location.x = event.mouseButton.x;
                 location.y = event.mouseButton.y;
                 
                 index = toIndex(location);
                 m_clicks++;
-            if (ifValidClick(index.first))
+            if (ifValidClick(index.first)) // to check
                 {
                     if (sf::Mouse::Left)
                     {
@@ -36,6 +36,7 @@ void Controller::startGame()
                     { }
                         //rotation to right + add color(if full)
                }
+            break;
             case sf::Event::Closed:
                 m_window.close();
                 break;

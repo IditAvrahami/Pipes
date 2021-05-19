@@ -27,6 +27,7 @@ public:
 	int numberOfNeighboors(const std::vector<std::vector<bool>>& boolRoad,int i,int j);
 	std::unique_ptr<RotationObject> kindOfPipe(const std::vector<std::vector<bool>>& boolRoad, int i, int j)const;
 	std::unique_ptr<RotationObject> RandomPipe(int i,int j)const;
+	void printBoard(sf::RenderWindow& window)const;
 	bool ifCanUp(int i)const;
 	bool ifCanDown(int i)const;
 	bool ifCanRight(int j)const;
