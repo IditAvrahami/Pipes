@@ -7,7 +7,7 @@ class CornerPipe : public RotationObject
 public:
 	CornerPipe(int x, int i) : RotationObject(x,i) {};
 	~CornerPipe() = default;
-	virtual void randomEdges();
+	//virtual void randomEdges();
 	virtual void intiStruct(int);
 
 

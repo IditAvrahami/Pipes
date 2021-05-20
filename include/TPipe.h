@@ -7,7 +7,7 @@ class TPipe : public RotationObject
 public:
 	TPipe(int x, int i) :RotationObject(x,i) {};
 	~TPipe() = default;
-	virtual void randomEdges();
+//	virtual void randomEdges();
 	virtual void intiStruct(int);
 
 private:

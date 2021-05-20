@@ -12,8 +12,9 @@ GraphicDesign::GraphicDesign() // singelton class
 	m_pictures[PLUS_PIPE].loadFromFile("plus_pipe.png");
 	m_pictures[SINK].loadFromFile("sink.png");
 	m_pictures[FULL_SINK].loadFromFile("full_sink.png");
+	m_pictures[WHITE].loadFromFile("white.png");
 	m_font.loadFromFile("resources/sansation.ttf");
-
+	m_back.setTexture(m_pictures[WHITE]);
 }
 
 
@@ -41,14 +42,19 @@ void GraphicDesign::printText(sf::RenderWindow& window, int clicks)
 	window.draw(m_Clicks);
 }
 
+void GraphicDesign::printBack(sf::RenderWindow& window)
+{
+	window.draw(m_back);
+}
+
 void GraphicDesign::setTextPosition(int row, int col)
 {
 	m_Clicks.setFont(m_font);
-	m_Clicks.setFillColor(sf::Color::White);
+	m_Clicks.setFillColor(sf::Color::Black);
 	m_Clicks.setPosition((float)((row - 1) * RATIO), ((float)((col + 0.25) * RATIO)));
 
 	m_Text.setFont(m_font);
-	m_Text.setFillColor(sf::Color::White);
+	m_Text.setFillColor(sf::Color::Black);
 	m_Text.setPosition((float)((row - 3) * RATIO), ((float)((col + 0.25) * RATIO)));
 
 }

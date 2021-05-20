@@ -9,7 +9,7 @@ class Tap  : public RotationObject
 public:
 	Tap(int x, int i) :RotationObject(x, i) {};
 	~Tap() = default;
-	virtual void randomEdges();
+//	virtual void randomEdges();
 	virtual void intiStruct(int);
 
 private:

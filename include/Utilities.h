@@ -1,6 +1,6 @@
 #pragma once
 
-const int PIPES = 7;
+const int PIPES = 8;
 const int RATIO = 60;
 //to right to left
 const int TAP = 0;
@@ -10,6 +10,7 @@ const int TPIPE = 3;
 const int PLUS_PIPE = 4;
 const int SINK = 5;
 const int FULL_SINK = 6;
+const int WHITE = 7;
 
 struct Position { // first connect with , second full are true
 	std::pair <bool, bool> up = std::make_pair(false, false);

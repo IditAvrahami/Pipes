@@ -7,4 +7,5 @@
 								  "CornerPipe.cpp"
 								  "PlusPipe.cpp"
 								  "StraightPipe.cpp"
-								  "Tap.cpp")
+								  "Tap.cpp"
+								  "TPipe.cpp")

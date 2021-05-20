@@ -7,7 +7,7 @@ class PlusPipe : public RotationObject // pipe
 public:
 	PlusPipe(int x, int i) :RotationObject(x, i) {};
 	~PlusPipe() = default;
-	virtual void randomEdges();
+//	virtual void randomEdges();
 	virtual void intiStruct(int);
 
 private:

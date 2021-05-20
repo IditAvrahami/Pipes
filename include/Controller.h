@@ -23,5 +23,6 @@ private:
 	int m_clicks;
 	int m_level;
 	Board m_board;
+	//sf::Sprite m_back;
 	sf::RenderWindow m_window;
 };

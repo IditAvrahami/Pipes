@@ -11,7 +11,7 @@ public:
 	~Sink ()= default;
 	virtual void rotation(const float direction) {};
 //	virtual void printObject(sf::RenderWindow& window)const {};
-	virtual void randomEdges();
+//	virtual void randomEdges();
 	virtual void intiStruct(int) {};
 
 private:

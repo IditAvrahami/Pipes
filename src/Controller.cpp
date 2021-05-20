@@ -16,7 +16,10 @@ void Controller::startGame()
         if (m_level == 4)
             endGame();
         // check of end of game and print bye message
-        m_window.clear();
+        m_window.clear(sf::Color::White);
+        //m_window.clear();
+        GraphicDesign::instance().printBack(m_window);
+
         m_board.printBoard(m_window); // add click to print
         GraphicDesign::instance().printText(m_window, m_clicks);
         m_window.display();
@@ -42,9 +45,9 @@ void Controller::startGame()
                     {
                         m_board.rotate(index.second, index.first, 90);
                     }
-                        //add color(if full)
+                     //add color(if full)
                      //check if full or have a path                        
-                        //add color
+                     //add color
                     if (winTheLevel()) // check if win
                         m_level++;
                }

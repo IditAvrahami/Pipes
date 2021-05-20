@@ -11,6 +11,7 @@ public:
 	sf::Sprite getSprite(int index);
 	static GraphicDesign& instance();
 	void printText(sf::RenderWindow& window, int clicks);
+	void printBack(sf::RenderWindow& window);
 	void setTextPosition(int x, int y);
 
 private:
@@ -19,4 +20,5 @@ private:
 	sf::Text m_Clicks;
 	sf::Font m_font;
 	sf::Text m_Text;
+	sf::Sprite m_back;
 };
