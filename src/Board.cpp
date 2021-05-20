@@ -224,8 +224,8 @@ void Board::bulidBoard(const std::vector < std::vector<bool>>& boolRoad)
 				{
 					m_currentBoard[i][j] = RandomPipe(i, j);
 				}
+				m_currentBoard[i][j]->setLocation(i, j);
 			}
-			m_currentBoard[i][j]->setLocation(i, j);
 		}
 	}
 }
@@ -304,6 +304,11 @@ void Board::printBoard(sf::RenderWindow& window)const
 			m_currentBoard[i][j]->printObject(window);
 		}
 	}
+}
+
+void Board::rotate(int i, int j, float direction)
+{
+	m_currentBoard[i][j]->rotation(direction);
 }
 
 bool Board::ifCanUp(int i) const

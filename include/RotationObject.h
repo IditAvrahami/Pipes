@@ -8,8 +8,7 @@ class RotationObject : public Object
 public:
 	RotationObject(int x, int i) :Object(x, i){};
 	~RotationObject()=default;
-//	virtual void rotation(const Direction& direction) = 0;
-//	virtual void printObject(sf::RenderWindow& window)const = 0;
+	virtual void rotation(const float direction) { Object::m_objectPng.rotate(direction); };
 
 private:
 	

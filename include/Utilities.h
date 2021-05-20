@@ -1,7 +1,7 @@
 #pragma once
 
 const int PIPES = 6;
-const int RATIO = 100;
+const int RATIO = 30;
 //to right to left
 const int TAP = 0;
 const int STRIGHT_PIIPE = 1;

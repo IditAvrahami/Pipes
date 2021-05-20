@@ -31,10 +31,13 @@ void Controller::startGame()
                 {
                     if (sf::Mouse::Left)
                     {
+                        m_board.rotate(index.second, index.first, 90.f);
                         //rotation to left + add color      
                     }
                     else if(sf::Mouse::Right)
-                    { }
+                    {
+                        m_board.rotate(index.second, index.first, -90.f);
+                    }
                         //rotation to right + add color(if full)
                }
             break;

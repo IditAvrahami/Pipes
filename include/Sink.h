@@ -8,6 +8,7 @@ class Sink : public Object
 public:
 	Sink(int x, int i) :Object(x,i) {};
 	~Sink ()= default;
+	virtual void rotation(const float direction) {};
 //	virtual void printObject(sf::RenderWindow& window)const {};
 
 private:

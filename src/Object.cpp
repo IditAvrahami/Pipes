@@ -3,6 +3,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include "GraphicDesign.h"
 #include "Utilities.h"
+#include <iostream>
 
 Object::Object(int x, int indexToPic) : m_myVertexNumber(x), m_full(false)// ,m_objectPng(sf::Sprite)
 {
@@ -32,11 +33,12 @@ void Object::printObject(sf::RenderWindow& window) const
 
 void Object::setLocation(int x, int y)
 {
+    //m_objectPng.setOrigin(sf::Vector2f(m_objectPng.getTexture()->getSize() / 2u));
+    m_objectPng.setOrigin(sf::Vector2f(0.5 * RATIO, 0.5 * RATIO));
     sf::Vector2f location;
-    location.x  = x* RATIO;
-    location.y = y * RATIO;
+    location.x = y * RATIO;
+    location.y = x * RATIO;
+    location += sf::Vector2f(0.5 * RATIO, 0.5 * RATIO);
     m_objectPng.setPosition(location);
-    location.x += 0.5 * RATIO;
-    location.y += 0.5 * RATIO;
-    m_objectPng.setOrigin(location);
+   // m_objectPng.rotate(-90.f);
 }
