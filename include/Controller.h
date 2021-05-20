@@ -13,10 +13,11 @@ public:
 	~Controller() = default;
 	void startGame();
 	void nextLevel();
-	void endGame(); // print bye message and picture
+	void endGame() {}; // print bye message and picture
 	int getClicks()const;
 	std::pair<int, int> toIndex(const sf::Vector2f &location)const;
 	bool ifValidClick(int)const;
+	bool winTheLevel()const;
 
 private:
 	int m_clicks;

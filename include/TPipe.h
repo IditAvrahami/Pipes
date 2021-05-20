@@ -1,14 +1,16 @@
 #pragma once
 #include "RotationObject.h"
+#include "Utilities.h"
 
 class TPipe : public RotationObject 
 {
 public:
 	TPipe(int x, int i) :RotationObject(x,i) {};
 	~TPipe() = default;
-//	virtual void rotation(const Direction& direction) {};
-//	virtual void printObject(sf::RenderWindow& window)const {};
+	virtual void randomEdges();
+	virtual void intiStruct(int);
 
 private:
+	struct Position m_Position;
 	//sf::Sprite m_Png;
 };

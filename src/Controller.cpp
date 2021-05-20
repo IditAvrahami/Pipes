@@ -1,5 +1,6 @@
 #include "Controller.h"
 #include "Utilities.h"
+#include "GraphicDesign.h"
 
 Controller::Controller() : m_clicks(0),m_level(0), m_window(sf::VideoMode(m_board.getCols()*RATIO, (m_board.getRows()+1)*RATIO), "Pipes")
 {
@@ -12,8 +13,12 @@ void Controller::startGame()
     sf::Vector2f location;
     while (m_window.isOpen())
     {
+        if (m_level == 4)
+            endGame();
+        // check of end of game and print bye message
         m_window.clear();
-        m_board.printBoard(m_window); // add click ti print
+        m_board.printBoard(m_window); // add click to print
+        GraphicDesign::instance().printText(m_window, m_clicks);
         m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
@@ -27,18 +32,21 @@ void Controller::startGame()
                 
                 index = toIndex(location);
                 m_clicks++;
-            if (ifValidClick(index.first)) // to check
+            if (ifValidClick(index.first))
                 {
-                    if (sf::Mouse::Left)
+                    if (event.mouseButton.button == sf::Mouse::Right)
                     {
-                        m_board.rotate(index.second, index.first, 90.f);
-                        //rotation to left + add color      
+                        m_board.rotate(index.second, index.first, 270);          
                     }
-                    else if(sf::Mouse::Right)
+                    else if(event.mouseButton.button == sf::Mouse::Left )
                     {
-                        m_board.rotate(index.second, index.first, -90.f);
+                        m_board.rotate(index.second, index.first, 90);
                     }
-                        //rotation to right + add color(if full)
+                        //add color(if full)
+                     //check if full or have a path                        
+                        //add color
+                    if (winTheLevel()) // check if win
+                        m_level++;
                }
             break;
             case sf::Event::Closed:
@@ -47,13 +55,13 @@ void Controller::startGame()
             }
         }
     }
-
 }
 
 void Controller::nextLevel()
 {
     m_board.createNewLevel();
 }
+
 
 int Controller::getClicks() const
 {
@@ -70,4 +78,11 @@ std::pair<int, int> Controller::toIndex(const sf::Vector2f& location)const
 bool Controller::ifValidClick(int place) const
 {
     return place < m_board.getRows();
+}
+
+bool Controller::winTheLevel() const
+{
+    if (m_board.ifEndOfLevel())
+        return true;
+    return false;
 }

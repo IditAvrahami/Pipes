@@ -3,4 +3,8 @@
 								  "Graph.cpp"
 								  "Object.cpp"
 								  "Controller.cpp"
-								  "GraphicDesign.cpp")
+								  "GraphicDesign.cpp"
+								  "CornerPipe.cpp"
+								  "PlusPipe.cpp"
+								  "StraightPipe.cpp"
+								  "Tap.cpp")

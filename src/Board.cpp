@@ -7,6 +7,7 @@
 #include "StraightPipe.h"
 #include "CornerPipe.h"
 #include "Utilities.h"
+#include "GraphicDesign.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iterator>
@@ -24,6 +25,7 @@ Board::Board() : m_cols(5), m_rows(5), m_number(0),m_graph(25)
 //	m_cols = (rand() % 10) + 5;
 	m_graph.setVertexes(m_rows * m_cols);
 	createBoard();
+	GraphicDesign::instance().setTextPosition(m_rows, m_cols);
 }
 
 void Board::createBoard()
@@ -39,6 +41,10 @@ void Board::createBoard()
 	//create the tap object in this place
 	m_currentBoard[source.first][source.second] = std::make_unique<Tap>(source.first * m_cols + source.second, TAP);
 	m_currentBoard[source.first][source.second]->setLocation(source.first, source.second);
+	m_tap.first = source.first;
+	m_tap.second = source.second;
+	m_currentBoard[source.first][source.second]->intiStruct(rand() % 4);
+
 
 	//the target point of the level
 	target = randomPoint();
@@ -47,6 +53,9 @@ void Board::createBoard()
 	//create the sink object in this place
 	m_currentBoard[target.first][target.second] = std::make_unique<Sink>(target.first * m_cols + target.second, SINK); 
 	m_currentBoard[target.first][target.second]->setLocation(target.first, target.second);
+	m_sink.first = target.first;
+	m_sink.second = target.second;
+	m_currentBoard[target.first][target.second]->intiStruct(rand() % 4);
 
 	//create dots in random place so the level wont be so easy
 	std::vector<std::pair<int, int>> dots;
@@ -57,6 +66,7 @@ void Board::createBoard()
 		checkCollision(dots[i]);
 		m_currentBoard[dots[i].first][dots[i].second] = std::make_unique<PlusPipe>(dots[i].first * m_cols + dots[i].second, PLUS_PIPE);
 		m_currentBoard[dots[i].first][dots[i].second]->setLocation(dots[i].first, dots[i].second);
+		m_currentBoard[dots[i].first][dots[i].second]->intiStruct(rand() % 4);
 	}
 	//create the level itself, make sure the level is solveable
 	makeTheBoard(source, target, dots);
@@ -225,6 +235,7 @@ void Board::bulidBoard(const std::vector < std::vector<bool>>& boolRoad)
 					m_currentBoard[i][j] = RandomPipe(i, j);
 				}
 				m_currentBoard[i][j]->setLocation(i, j);
+				m_currentBoard[i][j]->intiStruct(rand() % 4);
 			}
 		}
 	}
@@ -306,9 +317,9 @@ void Board::printBoard(sf::RenderWindow& window)const
 	}
 }
 
-void Board::rotate(int i, int j, float direction)
+void Board::rotate(int i, int j, int angel)
 {
-	m_currentBoard[i][j]->rotation(direction);
+		m_currentBoard[i][j]->rotation(float(angel));
 }
 
 bool Board::ifCanUp(int i) const
@@ -347,4 +358,11 @@ size_t Board::getRows() const
 size_t Board::getCols() const
 {
 	return m_cols;
+}
+
+bool Board::ifEndOfLevel() const
+{
+	if (m_currentBoard[m_tap.first][m_tap.second]->ifFull() && m_currentBoard[m_sink.first][m_sink.second]->ifFull())
+		return true;
+	return false;
 }

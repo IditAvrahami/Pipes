@@ -14,6 +14,9 @@ public:
 	void printObject(sf::RenderWindow& window)const ; 
 	virtual void setLocation(int x, int y);//(const sf::Vector2f& location);
 	virtual void rotation(const float direction) = 0;
+	virtual void colorObject();
+	virtual void randomEdges() = 0;
+	virtual void intiStruct(int ) = 0;
 
 protected:
 	int m_myVertexNumber;

@@ -42,3 +42,8 @@ void Object::setLocation(int x, int y)
     m_objectPng.setPosition(location);
    // m_objectPng.rotate(-90.f);
 }
+
+void Object::colorObject()
+{
+    m_objectPng.setColor(sf::Color::Blue);
+}
