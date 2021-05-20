@@ -13,6 +13,7 @@ void Controller::startGame()
     while (m_window.isOpen())
     {
         m_window.clear();
+        m_board.printBoard(m_window); // add click ti print
         m_window.display();
 
         if (auto event = sf::Event{}; m_window.waitEvent(event))
@@ -20,7 +21,7 @@ void Controller::startGame()
             switch (event.type)
             {
             case event.MouseButtonPressed:
-                m_board.printBoard(m_window);
+              //  m_board.printBoard(m_window);
                 location.x = event.mouseButton.x;
                 location.y = event.mouseButton.y;
                 

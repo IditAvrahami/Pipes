@@ -10,9 +10,9 @@ public:
 	virtual bool ifFull()const;
 	virtual void setFull(bool x);
 	virtual int getVertex()const { return m_myVertexNumber; };
-	virtual void setSprite(const sf::Texture&) ;
+	virtual void setSprite(const sf::Sprite& picture); // (const sf::Texture&);
 	void printObject(sf::RenderWindow& window)const ; 
-	virtual void setLocation(const sf::Vector2f& location);
+	virtual void setLocation(int x, int y);//(const sf::Vector2f& location);
 
 protected:
 	int m_myVertexNumber;

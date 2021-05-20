@@ -2,3 +2,5 @@
 configure_file ("plus_pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("stright_pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("t_pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("pipe.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("heart.png" ${CMAKE_BINARY_DIR} COPYONLY)

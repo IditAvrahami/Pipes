@@ -7,7 +7,8 @@ class GraphicDesign
 {
 public:
 	~GraphicDesign() = default; // close all photos
-	sf::Texture getPicture(int index)const;
+	sf::Texture& getPicture(int index);
+	sf::Sprite getSprite(int index);
 	static GraphicDesign& instance();
 
 private:
