@@ -167,7 +167,6 @@ void Controller::buildGraph()
 					}
 				}
 			}
-
 		}
 	}
 }

@@ -55,7 +55,7 @@ void Board::createBoard()
 	m_currentBoard[target.first][target.second]->setLocation(target.first, target.second);
 	m_sink.first = target.first;
 	m_sink.second = target.second;
-	m_currentBoard[target.first][target.second]->intiStruct(rand() % 4);
+	//m_currentBoard[target.first][target.second]->intiStruct(rand() % 4);
 
 	//create dots in random place so the level wont be so easy
 	std::vector<std::pair<int, int>> dots;
@@ -141,6 +141,8 @@ void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>&
 	m_graph.BFS(s, t);
 	temp = m_graph.getVertex();
 	std::copy(temp.begin(), temp.end(), std::back_inserter(road));	
+	
+	rotateTarget(target, road);
 	
 	commited_pipes(road);
 }
