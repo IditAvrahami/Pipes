@@ -13,7 +13,7 @@ public:
 	virtual void setSprite(const sf::Sprite& picture); // (const sf::Texture&);
 	void printObject(sf::RenderWindow& window)const ; 
 	virtual void setLocation(int x, int y);//(const sf::Vector2f& location);
-	virtual void rotation(const float direction) = 0;
+	virtual bool rotation(const float direction) = 0;
 	virtual void colorObject();
 	//virtual void randomEdges() = 0;
 	virtual void intiStruct(int ) = 0;

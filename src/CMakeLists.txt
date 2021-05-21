@@ -8,4 +8,5 @@
 								  "PlusPipe.cpp"
 								  "StraightPipe.cpp"
 								  "Tap.cpp"
-								  "TPipe.cpp")
+								  "TPipe.cpp"
+								  "Sink.cpp")

@@ -11,6 +11,7 @@ void Controller::startGame()
 {
     std::pair<int, int> index;
     sf::Vector2f location;
+    int rotation = 0;
     while (m_window.isOpen())
     {
         if (m_level == 4)
@@ -34,17 +35,30 @@ void Controller::startGame()
                 location.y = event.mouseButton.y;
                 
                 index = toIndex(location);
-                m_clicks++;
-            if (ifValidClick(index.first))
+
+            if (ifValidClick(index.second))
                 {
-                    if (event.mouseButton.button == sf::Mouse::Right)
-                    {
-                        m_board.rotate(index.second, index.first, 270);          
-                    }
-                    else if(event.mouseButton.button == sf::Mouse::Left )
-                    {
-                        m_board.rotate(index.second, index.first, 90);
-                    }
+                    //m_clicks++;
+                if (event.mouseButton.button == sf::Mouse::Right)
+                {
+                    rotation = 270;
+                    if (m_board.rotate(index.second, index.first, 270))
+                        m_clicks++;
+                }
+                else if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    rotation = 90;
+                    if (m_board.rotate(index.second, index.first, 90))
+                        m_clicks++;
+                }
+                else
+                    rotation = 0;
+                    /* instead of double if in the left right
+                    if (m_board.rotate(index.second, index.first, rotation))
+                            m_clicks++;
+                     */
+
+
                      //add color(if full)
                      //check if full or have a path                        
                      //add color
