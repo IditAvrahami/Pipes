@@ -11,6 +11,7 @@ public:
 	~StraightPipe() = default;
 //	virtual void randomEdges();
 	virtual void intiStruct(int);
+	virtual Position getPosition()const;
 
 private:
 	struct Position m_Position;

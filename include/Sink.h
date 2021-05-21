@@ -13,6 +13,7 @@ public:
 //	virtual void printObject(sf::RenderWindow& window)const {};
 //	virtual void randomEdges();
 	virtual void intiStruct(int) {};
+	virtual Position getPosition()const { return m_Position; };
 
 private:
 	struct Position m_Position;

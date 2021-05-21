@@ -366,3 +366,16 @@ bool Board::ifEndOfLevel() const
 		return true;
 	return false;
 }
+
+Graph Board::getGraph() const
+{
+	return m_graph;
+}
+
+std::vector<std::vector<Object*>> Board::getCurrentBoard() const
+{
+	std::vector<std::vector<Object*>> tmp;
+
+	std::copy(m_currentBoard.begin(), m_currentBoard.end(), tmp.begin());
+	return tmp;
+}

@@ -14,3 +14,8 @@ void StraightPipe::intiStruct(int number)
 		m_objectPng.rotate(90.f);
 	}
 }
+
+Position StraightPipe::getPosition() const
+{
+	return m_Position;
+}

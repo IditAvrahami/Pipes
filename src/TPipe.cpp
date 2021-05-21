@@ -30,3 +30,8 @@ void TPipe::intiStruct(int number)
 		m_objectPng.rotate(90.f);
 	}
 }
+
+Position TPipe::getPosition() const
+{
+	return m_Position;
+}

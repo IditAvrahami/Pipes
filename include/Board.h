@@ -29,8 +29,6 @@ public:
 	std::unique_ptr<RotationObject> RandomPipe(int i,int j)const;
 	void printBoard(sf::RenderWindow& window)const;
 	void rotate(int i, int j, int direction);
-	//Bstd::vector<Object*> operator[](int i)const;
-	//Object operator[](int j)const;
 	bool ifCanUp(int i)const;
 	bool ifCanDown(int i)const;
 	bool ifCanRight(int j)const;
@@ -38,6 +36,8 @@ public:
 	size_t getRows()const;
 	size_t getCols()const;
 	bool ifEndOfLevel()const;
+	Graph getGraph()const;
+	std::vector <std::vector<Object*>> getCurrentBoard()const;
 
 private:
 	size_t m_rows;
