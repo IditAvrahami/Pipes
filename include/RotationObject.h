@@ -14,6 +14,7 @@ public:
 	};
 //	virtual void randomEdges() = 0;
 	virtual void intiStruct(int)=0;
+	virtual Position getPosition()const =0;
 
 private:
 	

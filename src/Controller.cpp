@@ -2,7 +2,8 @@
 #include "Utilities.h"
 #include "GraphicDesign.h"
 
-Controller::Controller() : m_clicks(0),m_level(0), m_window(sf::VideoMode(m_board.getCols()*RATIO, (m_board.getRows()+1)*RATIO), "Pipes")
+Controller::Controller() : m_clicks(0),m_level(0), m_window(sf::VideoMode(m_board.getCols()*RATIO, (m_board.getRows()+1)*RATIO), "Pipes"),
+m_levelGraph(m_board.getCols()*m_board.getRows())
 {
     
 }
@@ -11,7 +12,8 @@ void Controller::startGame()
 {
     std::pair<int, int> index;
     sf::Vector2f location;
-    int rotation = 0;
+    m_levelGraph = m_board.getGraph();
+    buildGraph();
     while (m_window.isOpen())
     {
         if (m_level == 4)
@@ -35,35 +37,25 @@ void Controller::startGame()
                 location.y = event.mouseButton.y;
                 
                 index = toIndex(location);
-
-            if (ifValidClick(index.second))
+                m_clicks++;
+            if (ifValidClick(index.first))
                 {
-                    //m_clicks++;
-                if (event.mouseButton.button == sf::Mouse::Right)
-                {
-                    rotation = 270;
-                    if (m_board.rotate(index.second, index.first, 270))
-                        m_clicks++;
-                }
-                else if (event.mouseButton.button == sf::Mouse::Left)
-                {
-                    rotation = 90;
-                    if (m_board.rotate(index.second, index.first, 90))
-                        m_clicks++;
-                }
-                else
-                    rotation = 0;
-                    /* instead of double if in the left right
-                    if (m_board.rotate(index.second, index.first, rotation))
-                            m_clicks++;
-                     */
-
-
-                     //add color(if full)
+                    if (event.mouseButton.button == sf::Mouse::Right)
+                    {
+                        m_board.rotate(index.second, index.first, 270);          
+                    }
+                    else if(event.mouseButton.button == sf::Mouse::Left )
+                    {
+                        m_board.rotate(index.second, index.first, 90);
+                    }
+                   // updatePath();///////////////////////////////////////
                      //check if full or have a path                        
-                     //add color
+                     //add color(if full)
                     if (winTheLevel()) // check if win
+                    {
                         m_level++;
+                       // buildNewGraph(); call to func that build new level
+                    }
                }
             break;
             case sf::Event::Closed:
@@ -102,4 +94,68 @@ bool Controller::winTheLevel() const
     if (m_board.ifEndOfLevel())
         return true;
     return false;
+}
+/*
+void Controller::updatePath()
+{
+    for (size_t i = 0; i < m_board.getRows(); i++)
+    {
+        for (size_t j = 0; j < m_board.getCols(); j++)
+        {
+            
+        }
+    }
+}*/
+
+void Controller::buildGraph()
+{
+    std::vector <std::vector<Object*>> board = m_board.getCurrentBoard();
+   
+    for (size_t i = 0; i < m_board.getRows(); i++)
+    {
+        for (size_t j = 0; j < m_board.getCols(); j++)
+        {
+            if (m_board.ifCanUp(i))
+            {
+                if (!(board[i][j]->getPosition().up.first == true && board[i-1][j]->getPosition().down.first == true))
+                {
+                    m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i - 1][j]->getVertex());
+                }
+                else
+                {///// update something
+                }
+                if (m_board.ifCanDown(i))
+                {
+                    if (!(board[i][j]->getPosition().down.first == true && board[i + 1][j]->getPosition().up.first == true))
+                    {
+                        m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i + 1][j]->getVertex());
+                    }
+                    else
+                    {///// update something
+                    }
+                }
+                if (m_board.ifCanLeft(j))
+                {
+                    if (!(board[i][j]->getPosition().left.first == true && board[i][j+1]->getPosition().right.first == true))
+                    {
+                        m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i][j + 1]->getVertex());
+                    }
+                    else
+                    {///// update something
+                    }
+                }
+                if (m_board.ifCanRight(j))
+                {
+                    if (!(board[i][j]->getPosition().right.first == true && board[i][j - 1]->getPosition().left.first == true))
+                    {
+                        m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i][j - 1]->getVertex());
+                    }
+                    else
+                    {///// update something
+                    }
+                }
+            }
+            
+        }
+    }
 }

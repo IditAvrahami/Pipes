@@ -55,7 +55,7 @@ void Board::createBoard()
 	m_currentBoard[target.first][target.second]->setLocation(target.first, target.second);
 	m_sink.first = target.first;
 	m_sink.second = target.second;
-	//m_currentBoard[target.first][target.second]->intiStruct(rand() % 4);
+	m_currentBoard[target.first][target.second]->intiStruct(rand() % 4);
 
 	//create dots in random place so the level wont be so easy
 	std::vector<std::pair<int, int>> dots;
@@ -120,7 +120,7 @@ std::pair<int, int> Board::checkCollision(std::pair<int, int>& target) const
 	}
 }
 
-void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>& target,
+void Board::makeTheBoard(const std::pair<int, int>& source, const std::pair<int, int>& target,
 	const std::vector<std::pair<int, int>>& dots)
 {
 	std::vector<int> temp;
@@ -140,9 +140,7 @@ void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>&
 	t = m_currentBoard[target.first][target.second]->getVertex();
 	m_graph.BFS(s, t);
 	temp = m_graph.getVertex();
-	std::copy(temp.begin(), temp.end(), std::back_inserter(road));
-
-	rotateTarget(target,road);
+	std::copy(temp.begin(), temp.end(), std::back_inserter(road));	
 	
 	commited_pipes(road);
 }
@@ -319,9 +317,9 @@ void Board::printBoard(sf::RenderWindow& window)const
 	}
 }
 
-bool Board::rotate(int i, int j, int angel)
+void Board::rotate(int i, int j, int angel)
 {
-		return m_currentBoard[i][j]->rotation(float(angel));
+		m_currentBoard[i][j]->rotation(float(angel));
 }
 
 bool Board::ifCanUp(int i) const
@@ -369,16 +367,15 @@ bool Board::ifEndOfLevel() const
 	return false;
 }
 
-void Board::rotateTarget(std::pair<int, int>& target, const std::vector<int>& road)
+Graph Board::getGraph() const
 {
-	//road [0] = target , road[1] = the one before
-	if (road[0] == road[1]+1)
-		m_currentBoard[target.first][target.second]->intiStruct(1);
-	else if(road[0] == road[1] - 1)
-		m_currentBoard[target.first][target.second]->intiStruct(3);
-	else if(road[0] > road[1])
-		m_currentBoard[target.first][target.second]->intiStruct(0);
-	else if (road[0] > road[1])
-		m_currentBoard[target.first][target.second]->intiStruct(2);
+	return m_graph;
+}
 
+std::vector<std::vector<Object*>> Board::getCurrentBoard() const
+{
+	std::vector<std::vector<Object*>> tmp;
+
+	std::copy(m_currentBoard.begin(), m_currentBoard.end(), tmp.begin());
+	return tmp;
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include "Utilities.h"
 
 class Object
 {
@@ -17,6 +18,8 @@ public:
 	virtual void colorObject();
 	//virtual void randomEdges() = 0;
 	virtual void intiStruct(int ) = 0;
+	virtual void colorSprite();
+	virtual Position getPosition()const = 0;
 
 protected:
 	int m_myVertexNumber;

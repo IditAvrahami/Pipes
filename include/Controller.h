@@ -18,11 +18,13 @@ public:
 	std::pair<int, int> toIndex(const sf::Vector2f &location)const;
 	bool ifValidClick(int)const;
 	bool winTheLevel()const;
+	//void updatePath();
+	void buildGraph();
 
 private:
 	int m_clicks;
 	int m_level;
 	Board m_board;
-	//sf::Sprite m_back;
+	Graph m_levelGraph;
 	sf::RenderWindow m_window;
 };

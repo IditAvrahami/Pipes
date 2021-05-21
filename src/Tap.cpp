@@ -23,3 +23,8 @@ void Tap::intiStruct(int number)
 	}
 
 }
+
+Position Tap::getPosition() const
+{
+	return m_Position;
+}

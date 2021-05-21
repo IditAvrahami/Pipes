@@ -27,3 +27,8 @@ void CornerPipe::intiStruct(int number)
 	}
 
 }
+
+Position CornerPipe::getPosition() const
+{
+	return m_Position;
+}

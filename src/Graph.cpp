@@ -4,6 +4,7 @@
 #include <vector>
 #include <list>
 #include <iterator>
+#include <algorithm>
 
 Graph::Graph(int vertexAmount) : m_vertexAmount(vertexAmount) //	this->V = vertexAmount;
 {
@@ -18,6 +19,13 @@ Graph::Graph(int vertexAmount) : m_vertexAmount(vertexAmount) //	this->V = verte
 void Graph::addEdge(int source, int add)
 {
     m_adj[source].push_back(add); //adj[source].push_back(add); // Add the neiboor to source
+}
+
+void Graph::reduceEdge(int a, int b)
+{
+  //  std::list myList = m_adj[a];
+    std::remove_copy(m_adj[a].begin(), m_adj[a].end(), m_adj[a].begin(),b );
+  //  std::remove_copy(m_adj[b].begin(), m_adj[b].end(), m_adj[b].begin(), a);
 }
 
 void Graph::BFS(int s, int t)
@@ -99,3 +107,12 @@ void Graph::setVertexes(const int newsize)
         m_father[i] = -1;
     m_vertex.resize(0);
 }
+
+void Graph::operator=(const Graph& graph)
+{
+       std::copy(graph.m_adj.begin(), graph.m_adj.end(), this->m_adj.begin());
+       std::copy(graph.m_father.begin(), graph.m_father.end(), this->m_father.begin());
+       std::copy(graph.m_vertex.begin(), graph.m_vertex.end(), this->m_vertex.begin());
+       this->m_vertexAmount = graph.m_vertexAmount;
+}
+
