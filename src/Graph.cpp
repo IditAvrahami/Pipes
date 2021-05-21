@@ -111,8 +111,9 @@ void Graph::setVertexes(const int newsize)
 void Graph::operator=(const Graph& graph)
 {
        std::copy(graph.m_adj.begin(), graph.m_adj.end(), this->m_adj.begin());
-       std::copy(graph.m_father.begin(), graph.m_father.end(), this->m_father.begin());
-       std::copy(graph.m_vertex.begin(), graph.m_vertex.end(), this->m_vertex.begin());
+//       std::copy(graph.m_father.begin(), graph.m_father.end(), this->m_father.begin());
+//       std::copy(graph.m_vertex.begin(), graph.m_vertex.end(), this->m_vertex.begin());
+//       std::copy(graph.m_vertex.begin(), graph.m_vertex.end(), this->m_vertex.begin());
        this->m_vertexAmount = graph.m_vertexAmount;
 }
 

@@ -120,7 +120,7 @@ std::pair<int, int> Board::checkCollision(std::pair<int, int>& target) const
 	}
 }
 
-void Board::makeTheBoard(const std::pair<int, int>& source, const std::pair<int, int>& target,
+void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>& target,
 	const std::vector<std::pair<int, int>>& dots)
 {
 	std::vector<int> temp;
@@ -317,9 +317,9 @@ void Board::printBoard(sf::RenderWindow& window)const
 	}
 }
 
-void Board::rotate(int i, int j, int angel)
+bool Board::rotate(int i, int j, int angel)
 {
-		m_currentBoard[i][j]->rotation(float(angel));
+		return m_currentBoard[i][j]->rotation(float(angel));
 }
 
 bool Board::ifCanUp(int i) const
@@ -375,7 +375,29 @@ Graph Board::getGraph() const
 std::vector<std::vector<Object*>> Board::getCurrentBoard() const
 {
 	std::vector<std::vector<Object*>> tmp;
+	tmp.resize(m_currentBoard.size());
+	for (int i = 0; i < m_currentBoard.size(); i++)
+	{
+		tmp[i].resize(m_currentBoard[i].size());
+		for (int j = 0; j < m_currentBoard[i].size(); j++)
+		{
+			tmp[i][j] = m_currentBoard[i][j].get();
 
-	std::copy(m_currentBoard.begin(), m_currentBoard.end(), tmp.begin());
+		}
+	}
 	return tmp;
+}
+
+void Board::rotateTarget(std::pair<int, int>& target, const std::vector<int>& road)
+{
+	//road [0] = target , road[1] = the one before
+	if (road[0] == road[1] + 1)
+		m_currentBoard[target.first][target.second]->intiStruct(1);
+	else if (road[0] == road[1] - 1)
+		m_currentBoard[target.first][target.second]->intiStruct(3);
+	else if (road[0] > road[1])
+		m_currentBoard[target.first][target.second]->intiStruct(0);
+	else if (road[0] > road[1])
+		m_currentBoard[target.first][target.second]->intiStruct(2);
+
 }
