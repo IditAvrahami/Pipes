@@ -66,8 +66,10 @@ void Controller::startGame()
 					if (m_board.ifEndOfLevel()) // check if win
 					{
 						m_level++;
-						// buildNewGraph(); call to func that build new level
-						m_window.close();
+						//buildNewGraph(); call to func that build new level
+						m_board.createNewLevel();
+						m_levelGraph = m_board.getGraph();
+						buildGraph();
 					}
 				}
 				break;
@@ -123,23 +125,37 @@ void Controller::updatePath()
 void Controller::buildGraph()
 {
 	std::vector <std::vector<Object*>> board = m_board.getCurrentBoard();
-
+	std::pair<int, int> target = m_board.getSink();
 	for (size_t i = 0; i < m_board.getRows(); i++)
 	{
 		for (size_t j = 0; j < m_board.getCols(); j++)
 		{
+			if (i == target.first && j == target.second)
+				break;
 			if (m_board.ifCanUp(i))
 				if (!(board[i][j]->getPosition().up.first == true && board[i - 1][j]->getPosition().down.first == true))
+				{
 					m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i - 1][j]->getVertex());
+					m_levelGraph.reduceEdge(board[i - 1][j]->getVertex(), board[i][j]->getVertex());
+				}
 			if (m_board.ifCanDown(i))
 				if (!(board[i][j]->getPosition().down.first == true && board[i + 1][j]->getPosition().up.first == true))
+				{
 					m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i + 1][j]->getVertex());
+					m_levelGraph.reduceEdge(board[i + 1][j]->getVertex(), board[i][j]->getVertex());
+				}
 			if (m_board.ifCanLeft(j))
 				if (!(board[i][j]->getPosition().left.first == true && board[i][j - 1]->getPosition().right.first == true))
+				{
 					m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i][j - 1]->getVertex());
+					m_levelGraph.reduceEdge(board[i][j - 1]->getVertex(), board[i][j]->getVertex());
+				}
 			if (m_board.ifCanRight(j))
 				if (!(board[i][j]->getPosition().right.first == true && board[i][j + 1]->getPosition().left.first == true))
+				{
 					m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i][j + 1]->getVertex());
+					m_levelGraph.reduceEdge(board[i][j + 1]->getVertex(), board[i][j]->getVertex());
+				}
 		}
 	}
 }

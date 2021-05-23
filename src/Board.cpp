@@ -28,6 +28,15 @@ Board::Board() : m_cols(5), m_rows(5), m_number(0),m_graph(25)
 	GraphicDesign::instance().setTextPosition(m_rows, m_cols);
 }
 
+void Board::createNewBoard()
+{
+	m_rows = (rand() % 10) + 5; // between 5-15
+	m_cols = (rand() % 10) + 5;
+	m_graph.setVertexes(m_rows * m_cols);
+	createBoard();
+	GraphicDesign::instance().setTextPosition(m_rows, m_cols);
+}
+
 void Board::createBoard()
 {
 	std::pair<int, int> source, target;
@@ -75,7 +84,7 @@ void Board::createBoard()
 
 void Board::createNewLevel()
 {
-	//	m_rows = (rand() % 10) + 5; // between 5-15
+//	m_rows = (rand() % 10) + 5; // between 5-15
 //	m_cols = (rand() % 10) + 5;
 	m_graph.setVertexes(m_rows * m_cols);
 	createBoard();
@@ -140,11 +149,12 @@ void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>&
 	t = m_currentBoard[target.first][target.second]->getVertex();
 	m_graph.BFS(s, t);
 	temp = m_graph.getVertex();
-	std::copy(temp.begin(), temp.end(), std::back_inserter(road));	
-	
+	std::copy(temp.begin(), temp.end(), std::back_inserter(road));
+
 	rotateTarget(target, road);
-	
+
 	commited_pipes(road);
+
 }
 
 void Board::buildGraph()

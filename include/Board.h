@@ -16,6 +16,7 @@ public:
 	~Board() = default;
 	
 	//inits funcs
+	void createNewBoard();
 	void createBoard();
 	void createNewLevel();
 	void resizeBoard();
