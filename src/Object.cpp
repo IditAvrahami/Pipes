@@ -52,7 +52,7 @@ void Object::colorObject()
 void Object::colorSprite()
 {
     if(m_full)
-        m_objectPng.setColor(sf::Color::Red);
+        m_objectPng.setColor(sf::Color::Magenta);
     else
         m_objectPng.setColor(sf::Color::Black);
 }

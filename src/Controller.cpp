@@ -40,7 +40,6 @@ void Controller::startGame()
 						rotation = 270;
 						/*if (m_board.rotate(index.second, index.first, 270))
 							m_clicks++;*/
-							//m_board.updateCurrentBits(); //update the struct
 					}
 					else if (event.mouseButton.button == sf::Mouse::Left)
 					{
@@ -55,16 +54,15 @@ void Controller::startGame()
 					if (m_board.rotate(index.second, index.first, rotation) && rotation != 0)
 					{
 						m_clicks++;
+						//update the position of the changed pipe
 						m_board.updateCurrentBits(index.second, index.first, rotation);
 					}
-
-					updateGraph(index.second, index.first); // update level graph 2 update color of all the pipes check id end
+					
+					updateGraph(index.second, index.first);
 					m_levelGraph.BFS(m_board.getTapVertexNumber(), m_board.getSinkVertexNumber());
 					m_board.fillPipes(m_levelGraph.getVertex());
 
-					// updatePath();///////////////////////////////////////
-					  //check if full or have a path                        
-					  //add color(if full)
+
 					if (m_board.ifEndOfLevel()) // check if win
 					{
 						m_level++;
@@ -176,8 +174,7 @@ void Controller::buildGraph()
 				m_levelGraph.addEdge(current_index, left_index);
 			}
 		}
-}
-*/
+}*/
 
 void Controller::print()
 {
@@ -192,7 +189,10 @@ void Controller::updateGraph(int i, int j)
 	std::vector <std::vector<Object*>> board = m_board.getCurrentBoard();
 	if (m_board.ifCanUp(i))
 		if (!(board[i][j]->getPosition().up.first == true && board[i - 1][j]->getPosition().down.first == true))
+		{
 			m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i - 1][j]->getVertex());
+			m_levelGraph.reduceEdge(board[i - 1][j]->getVertex(), board[i][j]->getVertex());
+		}
 		else if (board[i][j]->getPosition().up.first == true && board[i - 1][j]->getPosition().down.first == true)
 		{
 			m_levelGraph.addEdge(board[i][j]->getVertex(), board[i - 1][j]->getVertex());
@@ -201,7 +201,10 @@ void Controller::updateGraph(int i, int j)
 
 	if (m_board.ifCanDown(i))
 		if (!(board[i][j]->getPosition().down.first == true && board[i + 1][j]->getPosition().up.first == true))
+		{
 			m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i + 1][j]->getVertex());
+			m_levelGraph.reduceEdge(board[i + 1][j]->getVertex(), board[i][j]->getVertex());
+		}
 		else if (board[i][j]->getPosition().down.first == true && board[i + 1][j]->getPosition().up.first == true)
 		{
 			m_levelGraph.addEdge(board[i][j]->getVertex(), board[i + 1][j]->getVertex());
@@ -210,7 +213,10 @@ void Controller::updateGraph(int i, int j)
 
 	if (m_board.ifCanLeft(j))
 		if (!(board[i][j]->getPosition().left.first == true && board[i][j - 1]->getPosition().right.first == true))
+		{
 			m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i][j - 1]->getVertex());
+			m_levelGraph.reduceEdge(board[i][j - 1]->getVertex(), board[i][j]->getVertex());
+		}
 		else if (board[i][j]->getPosition().left.first == true && board[i][j - 1]->getPosition().right.first == true)
 		{
 			m_levelGraph.addEdge(board[i][j]->getVertex(), board[i][j - 1]->getVertex());
@@ -219,7 +225,10 @@ void Controller::updateGraph(int i, int j)
 
 	if (m_board.ifCanRight(j))
 		if (!(board[i][j]->getPosition().right.first == true && board[i][j + 1]->getPosition().left.first == true))
+		{
 			m_levelGraph.reduceEdge(board[i][j]->getVertex(), board[i][j + 1]->getVertex());
+			m_levelGraph.reduceEdge(board[i][j + 1]->getVertex(), board[i][j]->getVertex());
+		}
 		else if (board[i][j]->getPosition().right.first == true && board[i][j + 1]->getPosition().left.first == true)
 		{
 			m_levelGraph.addEdge(board[i][j]->getVertex(), board[i][j + 1]->getVertex());

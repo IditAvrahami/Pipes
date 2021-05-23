@@ -19,10 +19,10 @@ Board::Board() : m_cols(5), m_rows(5), m_number(0),m_graph(25)
 	//change this to dibug, for same result
 	srand(23081999);
 	//srand(time(NULL));
-	m_rows = 3;
-	m_cols = 3;
-//	m_rows = (rand() % 10) + 5; // between 5-15
-//	m_cols = (rand() % 10) + 5;
+	//m_rows = 3;
+	//m_cols = 3;
+	m_rows = (rand() % 10) + 5; // between 5-15
+	m_cols = (rand() % 10) + 5;
 	m_graph.setVertexes(m_rows * m_cols);
 	createBoard();
 	GraphicDesign::instance().setTextPosition(m_rows, m_cols);
@@ -396,8 +396,8 @@ void Board::fillPipes(std::vector<int> road)
 		}
 	for (size_t i = 0; i < road.size(); i++)
 	{
-		row = road[i] / m_rows;
-		col = road[i] - row * m_cols;
+		row = road[i] / m_cols;
+		col = road[i] - (row * m_cols);
 		m_currentBoard[row][col]->setFull(true);
 	}
 }

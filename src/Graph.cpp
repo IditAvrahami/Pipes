@@ -23,12 +23,15 @@ void Graph::addEdge(int source, int add)
 
 void Graph::reduceEdge(int a, int b)
 {
-   /* std::vector<int> list;
-    if (m_adj[a].size() == 0)
+  /* std::vector<int> list;
+   size_t size = m_adj[a].size();
+    if (size == 0)
         return;
-    //if (m_adj[a].size() - 1)
-    list.resize(m_adj[a].size() -1 );
-    size_t size = m_adj[a].size();
+    if (size == 1)
+        list.resize(1);
+    else
+        list.resize(m_adj[a].size() -1 );
+    
     int index = 0;
     for (size_t i = 0; i < size; i++)
     {
@@ -46,9 +49,9 @@ void Graph::reduceEdge(int a, int b)
         return;
     //if (m_adj[a].size() - 1)
     list.resize(0);
-    //size_t size = m_adj[a].size();
+    size_t size = m_adj[a].size();
     //int index = 0;
-    for (size_t i = 0; i < m_adj[a].size(); i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (m_adj[a].front() != b)
             list.push_back(m_adj[a].front()); // copy the list to a vector
@@ -74,6 +77,8 @@ void Graph::reduceEdge(int a, int b)
 void Graph::BFS(int s, int t)
 {
     m_vertex.resize(0);
+    for (int i = 0; i < m_vertexAmount; i++)
+        m_father[i] = -1;
     // Mark all the vertices as not visited
     std::vector<bool> visited ;//  bool* visited = new bool[V];
     visited.resize(m_vertexAmount);
