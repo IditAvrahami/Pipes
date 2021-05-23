@@ -2,10 +2,12 @@
 #include "Utilities.h"
 #include "GraphicDesign.h"
 
-Controller::Controller() : m_clicks(0), m_level(0), m_window(sf::VideoMode(m_board.getCols()* RATIO, (m_board.getRows() + 1)* RATIO), "Pipes"),
+Controller::Controller() : m_clicks(0), m_level(1), m_window(sf::VideoMode(m_board.getCols()* RATIO, (m_board.getRows() + 1)* RATIO), "Pipes"),
 m_levelGraph(m_board.getCols()* m_board.getRows())
 {
-
+	m_endGame = GraphicDesign::instance().getSprite(WELLDONE);
+	m_muffin = GraphicDesign::instance().getSprite(FULLSINK);
+	m_muffin.setPosition(RATIO, 0);
 }
 
 void Controller::startGame()
@@ -77,6 +79,27 @@ void Controller::nextLevel()
 	m_board.createNewLevel();
 	m_levelGraph = m_board.getGraph();
 	buildGraph();
+}
+
+void Controller::endGame()
+{
+	m_window.close();
+	m_window.create(sf::VideoMode(RATIO, RATIO*2), "well-done");
+	while (m_window.isOpen())
+	{
+		m_window.clear(sf::Color::White);
+		m_window.draw(m_endGame);
+		m_window.draw(m_muffin);
+		m_window.display();
+		if (auto event = sf::Event{}; m_window.waitEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				m_window.close();
+			}
+		}
+	}
 }
 
 int Controller::getClicks() const

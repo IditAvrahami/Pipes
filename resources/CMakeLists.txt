@@ -9,6 +9,7 @@ configure_file ("white.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("sansation.ttf" ${CMAKE_BINARY_DIR}/resources COPYONLY)
 
 configure_file ("3_empty.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("well-done.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("3_full.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("4_empty.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("4_full.png" ${CMAKE_BINARY_DIR} COPYONLY)

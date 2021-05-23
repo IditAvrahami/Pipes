@@ -13,7 +13,7 @@ public:
 	~Controller() = default;
 	void startGame();
 	void nextLevel();
-	void endGame() { m_window.close(); }; // print bye message and picture
+	void endGame(); // print bye message and picture
 	int getClicks()const;
 	std::pair<int, int> toIndex(const sf::Vector2f &location)const;
 	bool ifValidClick(int)const;
@@ -28,4 +28,6 @@ private:
 	Board m_board;
 	Graph m_levelGraph;
 	sf::RenderWindow m_window;
+	sf::Sprite m_endGame;
+	sf::Sprite m_muffin;
 };

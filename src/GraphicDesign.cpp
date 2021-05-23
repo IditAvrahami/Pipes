@@ -15,6 +15,8 @@ GraphicDesign::GraphicDesign() // singelton class
 	m_pictures[PLUS_PIPE_FULL].loadFromFile("4_full.png");
 	m_pictures[SINK].loadFromFile("sink.png");
 	m_pictures[TAP].loadFromFile("tap.png");
+	m_pictures[WELLDONE].loadFromFile("well-done.png");
+	m_pictures[FULLSINK].loadFromFile("full_sink.png");
 
 	m_font.loadFromFile("resources/sansation.ttf");
 }
