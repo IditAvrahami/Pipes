@@ -2,7 +2,6 @@
 
 void StraightPipe::intiStruct(int number)
 {
-	//static bool first = true;
 	if (number % 2 == 0)
 	{
 		m_positionNumber = 0;
@@ -18,11 +17,9 @@ void StraightPipe::intiStruct(int number)
 		m_Position.right.first = false;
 		m_Position.up.first = true;
 		m_Position.down.first = true;
-	//	if (first)
-			m_objectPng.rotate(90.f);
+		m_objectPng.rotate(90.f);
 	}
-	//if (first)
-	//	first = !first;
+
 }
 
 Position StraightPipe::getPosition() const
@@ -34,7 +31,6 @@ void StraightPipe::updateCurrentBits(int rotation)
 {
 	m_positionNumber++;
 	m_positionNumber %= 2;
-	//intiStruct(m_positionNumber);
 	switch (m_positionNumber)
 	{
 	case 0:

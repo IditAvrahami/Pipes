@@ -19,8 +19,6 @@ Board::Board() : m_cols(5), m_rows(5), m_number(0),m_graph(25)
 	//change this to dibug, for same result
 	srand(23081999);
 	//srand(time(NULL));
-	//m_rows = 3;
-	//m_cols = 3;
 	m_rows = (rand() % 10) + 5; // between 5-15
 	m_cols = (rand() % 10) + 5;
 	m_graph.setVertexes(m_rows * m_cols);
@@ -84,8 +82,6 @@ void Board::createBoard()
 
 void Board::createNewLevel()
 {
-//	m_rows = (rand() % 10) + 5; // between 5-15
-//	m_cols = (rand() % 10) + 5;
 	m_graph.setVertexes(m_rows * m_cols);
 	createBoard();
 }
@@ -159,7 +155,6 @@ void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>&
 
 void Board::buildGraph()
 {
-	//m_graph.resetGraph();
 	for (int i = 0; i < m_rows ; i++)
 		for (int j = 0; j < m_cols; j++)
 		{
@@ -383,22 +378,6 @@ bool Board::ifEndOfLevel() const
 void Board::fillPipes(std::vector<int> road)
 {
 	int col, row;
-	/*for (size_t i = 0; i < road.size(); i++)
-	{
-		row = road[i] / m_rows;
-		col = road[i] - row * m_cols;
-		m_currentBoard[row][col]->setFull(true);
-	}*/
-	/*
-	for (size_t i = 0; i < m_rows; i++)
-		for (size_t j = 0; j < m_cols; j++)
-		{
-			auto found = std::find(std::begin(road), std::end(road), m_currentBoard[i][j]->getVertex());
-			if (found != std::end(road))
-				m_currentBoard[i][j]->setFull(true);
-			else
-				m_currentBoard[i][j]->setFull(false);
-		}*/
 	for (size_t i = 0; i < m_rows; i++)
 		for (size_t j = 0; j < m_cols; j++)
 		{
@@ -458,20 +437,8 @@ void Board::updateCurrentBits(int x, int y, int rotation)
 	m_currentBoard[x][y]->updateCurrentBits(rotation);
 }
 
-/*std::vector<std::pair<int, int>> Board::getTaps()
-{
-	std::vector<std::pair<int, int>> taps;
-	for (int i = 0 ; i < m_rows; i++)
-		for (int j = 0; j < m_cols; j++)
-		{
-			if 
-		}
-	return std::vector<std::pair<int, int>>();
-}*/
-
 void Board::rotateTarget(std::pair<int, int>& target, const std::vector<int>& road)
 {
-	//road [0] = target , road[1] = the one before
 	if (road[0] == road[1] + 1)
 		m_currentBoard[target.first][target.second]->intiStruct(1);
 	else if (road[0] == road[1] - 1)

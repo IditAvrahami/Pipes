@@ -5,7 +5,7 @@
 #include "Utilities.h"
 #include <iostream>
 
-Object::Object(int x, int indexToPic) : m_myVertexNumber(x), m_full(false)// ,m_objectPng(sf::Sprite)
+Object::Object(int x, int indexToPic) : m_myVertexNumber(x), m_full(false)
 {
     m_objectPng = GraphicDesign::instance().getSprite(indexToPic);
     colorSprite();
@@ -24,7 +24,6 @@ void Object::setFull(bool x)
 void Object::setSprite(const sf::Sprite& picture )//(const sf::Texture& picture)
 {
     m_objectPng = picture;
-//    m_objectPng.setTexture(picture);
 }
 
 void Object::printObject(sf::RenderWindow& window) const
@@ -34,14 +33,12 @@ void Object::printObject(sf::RenderWindow& window) const
 
 void Object::setLocation(int x, int y)
 {
-    //m_objectPng.setOrigin(sf::Vector2f(m_objectPng.getTexture()->getSize() / 2u));
     m_objectPng.setOrigin(sf::Vector2f(0.5 * RATIO, 0.5 * RATIO));
     sf::Vector2f location;
     location.x = y * RATIO;
     location.y = x * RATIO;
     location += sf::Vector2f(0.5 * RATIO, 0.5 * RATIO);
     m_objectPng.setPosition(location);
-   // m_objectPng.rotate(-90.f);
 }
 
 void Object::colorObject()

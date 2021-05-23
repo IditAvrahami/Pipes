@@ -10,13 +10,10 @@ public:
 	Sink(int x, int i) :Object(x,i) {};
 	~Sink ()= default;
 	virtual bool rotation(const float direction) { return false; };
-//	virtual void printObject(sf::RenderWindow& window)const {};
-//	virtual void randomEdges();
 	virtual void intiStruct(int);
 	virtual Position getPosition()const { return m_Position; };
 	virtual void updateCurrentBits(int rotation) {};
 
 private:
 	struct Position m_Position;
-	//sf::Sprite m_sinkPng;
 };

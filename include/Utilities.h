@@ -1,17 +1,5 @@
 #pragma once
 
-/*const int PIPES = 8;
-const int RATIO = 60;
-//to right to left
-const int TAP = 0;
-const int STRIGHT_PIIPE = 1;
-const int CORNER_PIPE = 2;
-const int TPIPE = 3;
-const int PLUS_PIPE = 4;
-const int SINK = 5;
-const int FULL_SINK = 6;
-const int WHITE = 7;*/
-
 const int RATIO = 60;
 const int PIPES = 10;
 const int STRIGHT_PIIPE = 0;

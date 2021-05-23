@@ -2,7 +2,6 @@
 
 void Tap::intiStruct(int number)
 {
-	//static bool first = true;
 	if (number == 0) // defult - up
 	{
 		m_positionNumber = 0;
@@ -18,8 +17,7 @@ void Tap::intiStruct(int number)
 		m_Position.right.first = false;
 		m_Position.down.first = false;
 		m_Position.up.first = false;
-	//	if (first)
-			m_objectPng.rotate(270.f);
+		m_objectPng.rotate(270.f);
 	}
 	else if (number == 2)
 	{
@@ -28,8 +26,7 @@ void Tap::intiStruct(int number)
 		m_Position.right.first = false;
 		m_Position.left.first = false;
 		m_Position.up.first = false;
-	//	if (first)
-			m_objectPng.rotate(180.f);
+		m_objectPng.rotate(180.f);
 	}
 	else if (number == 3)
 	{
@@ -38,12 +35,8 @@ void Tap::intiStruct(int number)
 		m_Position.left.first = false;
 		m_Position.up.first = false;
 		m_Position.down.first = false;
-	//	if (first)
-			m_objectPng.rotate(90.f);
+		m_objectPng.rotate(90.f);
 	}
-	//if (first)
-	//	first = !first;
-
 }
 
 Position Tap::getPosition() const
@@ -58,7 +51,6 @@ void Tap::updateCurrentBits(int rotation)
 	else if (rotation == 270)
 		m_positionNumber += 1;
 	m_positionNumber %= 4;
-	//intiStruct(m_positionNumber);
 	switch (m_positionNumber)
 	{
 	case 0:

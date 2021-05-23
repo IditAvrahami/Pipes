@@ -2,7 +2,6 @@
 
 void TPipe::intiStruct(int number)
 {
-	//static bool first = true;
 	if (number == 0)
 	{
 		m_positionNumber = 0;
@@ -18,8 +17,7 @@ void TPipe::intiStruct(int number)
 		m_Position.left.first = true;
 		m_Position.down.first = true;
 		m_Position.up.first = true;
-	//	if (first)
-			m_objectPng.rotate(270.f);
+		m_objectPng.rotate(270.f);
 	}
 	else if (number == 2)
 	{
@@ -28,8 +26,7 @@ void TPipe::intiStruct(int number)
 		m_Position.left.first = true;
 		m_Position.right.first = true;
 		m_Position.down.first = true;
-	//	if (first)
-			m_objectPng.rotate(180.f);
+		m_objectPng.rotate(180.f);
 	}
 	else if (number == 3)
 	{
@@ -38,11 +35,8 @@ void TPipe::intiStruct(int number)
 		m_Position.up.first = true;
 		m_Position.right.first = true;
 		m_Position.down.first = true;
-	//	if (first)
-			m_objectPng.rotate(90.f);
+		m_objectPng.rotate(90.f);
 	}
-	//if (first)
-	//	first = !first;
 }
 
 Position TPipe::getPosition() const
@@ -57,7 +51,6 @@ void TPipe::updateCurrentBits(int rotation)
 	else if (rotation == 270)
 		m_positionNumber += 1;
 	m_positionNumber %= 4;
-	//intiStruct(m_positionNumber);
 	switch (m_positionNumber)
 	{
 	case 0:

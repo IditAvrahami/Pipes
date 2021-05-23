@@ -2,10 +2,7 @@
 
 void Sink::intiStruct(int number)
 {
-	//static bool first = true;
-	//if (first)
-	//{
-		//first = !first;
+
 		if (number == 0) // defult - up
 		{
 			m_Position.up.first = true;
@@ -26,5 +23,4 @@ void Sink::intiStruct(int number)
 			m_Position.right.first = true;
 			m_objectPng.setRotation(90.f);
 		}
-	//}
 }

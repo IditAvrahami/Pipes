@@ -18,7 +18,6 @@ public:
 	std::pair<int, int> toIndex(const sf::Vector2f &location)const;
 	bool ifValidClick(int)const;
 	bool winTheLevel()const;
-	//void updatePath();
 	void buildGraph();
 	void print();
 	void updateGraph(int x, int y);
