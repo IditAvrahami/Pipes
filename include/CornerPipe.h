@@ -10,6 +10,7 @@ public:
 	//virtual void randomEdges();
 	virtual void intiStruct(int);
 	virtual Position getPosition()const;
+	virtual void updateCurrentBits(int rotation);
 
 
 private:

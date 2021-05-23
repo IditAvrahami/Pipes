@@ -23,8 +23,51 @@ void Graph::addEdge(int source, int add)
 
 void Graph::reduceEdge(int a, int b)
 {
-  //  std::list myList = m_adj[a];
-    std::remove_copy(m_adj[a].begin(), m_adj[a].end(), m_adj[a].begin(),b );
+   /* std::vector<int> list;
+    if (m_adj[a].size() == 0)
+        return;
+    //if (m_adj[a].size() - 1)
+    list.resize(m_adj[a].size() -1 );
+    size_t size = m_adj[a].size();
+    int index = 0;
+    for (size_t i = 0; i < size; i++)
+    {
+        if (m_adj[a].front() != b)
+        { 
+            list[index] = m_adj[a].front(); // copy the list to a vector
+            index++;
+        }
+        m_adj[a].pop_front();
+    }*/
+
+
+    std::vector<int> list;
+    if (m_adj[a].size() == 0)
+        return;
+    //if (m_adj[a].size() - 1)
+    list.resize(0);
+    //size_t size = m_adj[a].size();
+    //int index = 0;
+    for (size_t i = 0; i < m_adj[a].size(); i++)
+    {
+        if (m_adj[a].front() != b)
+            list.push_back(m_adj[a].front()); // copy the list to a vector
+        m_adj[a].pop_front();
+    }
+
+
+
+
+    //std::list<int> myList;// = m_adj[a];
+    //std::remove_copy(std::begin(m_adj[a]), std::end(m_adj[a]), myList.begin(), b);
+    // std::remove_copy(m_adj[a].begin(), m_adj[a].end(), myList.begin(), b);
+    m_adj[a].clear();
+    for (size_t i = 0; i < list.size(); i++)
+    {
+        m_adj[a].push_back(list[i]);
+    }
+    //m_adj[a] = list;
+    //std::remove_copy(m_adj[a].begin(), m_adj[a].end(), m_adj[a].begin(),b );
   //  std::remove_copy(m_adj[b].begin(), m_adj[b].end(), m_adj[b].begin(), a);
 }
 
@@ -76,10 +119,19 @@ void Graph::BFS(int s, int t)
     }
 
 
-    while (t != -2)
+    while (t != -2 && t != -1)
     {
         m_vertex.push_back(t);
         t = m_father[t];
+    }
+    if (t == -1)
+    {
+        m_vertex.clear();
+        for (int i = 0; i < visited.size(); i++)
+        {
+            if (visited[i])
+                m_vertex.push_back(i);
+        }
     }
     /*
     //the t vertex accessible
@@ -115,5 +167,26 @@ void Graph::operator=(const Graph& graph)
 //       std::copy(graph.m_vertex.begin(), graph.m_vertex.end(), this->m_vertex.begin());
 //       std::copy(graph.m_vertex.begin(), graph.m_vertex.end(), this->m_vertex.begin());
        this->m_vertexAmount = graph.m_vertexAmount;
+}
+
+void Graph::resetGraph()
+{
+    for (int i = 0; i < m_vertexAmount; i++)
+        m_adj[i].clear();
+    //insert to any vertex his father
+    for (int i = 0; i < m_vertexAmount; i++)
+        m_father[i] = -1;
+
+
+    //setVertexes(m_vertexAmount);
+    /*m_adj.clear();
+    m_father.clear();
+    m_vertex.clear();
+    m_adj.resize(vertexAmount); //	adj = new list<int>[V];
+    m_father.resize(vertexAmount);
+    //insert to any vertex his father
+    for (int i = 0; i < vertexAmount; i++)
+        m_father[i] = -1;
+    m_vertex.resize(0);*/
 }
 

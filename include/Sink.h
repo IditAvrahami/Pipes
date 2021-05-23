@@ -14,6 +14,7 @@ public:
 //	virtual void randomEdges();
 	virtual void intiStruct(int);
 	virtual Position getPosition()const { return m_Position; };
+	virtual void updateCurrentBits(int rotation) {};
 
 private:
 	struct Position m_Position;

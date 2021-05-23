@@ -9,4 +9,5 @@
 								  "StraightPipe.cpp"
 								  "Tap.cpp"
 								  "TPipe.cpp"
-								  "Sink.cpp")
+								  "Sink.cpp"
+								  "RotationObject.cpp")

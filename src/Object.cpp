@@ -18,6 +18,7 @@ bool Object::ifFull() const
 void Object::setFull(bool x)
 {
     m_full = x;
+    colorSprite();
 }
 
 void Object::setSprite(const sf::Sprite& picture )//(const sf::Texture& picture)
@@ -51,7 +52,7 @@ void Object::colorObject()
 void Object::colorSprite()
 {
     if(m_full)
-        m_objectPng.setColor(sf::Color::Blue);
+        m_objectPng.setColor(sf::Color::Red);
     else
         m_objectPng.setColor(sf::Color::Black);
 }

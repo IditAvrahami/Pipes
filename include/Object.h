@@ -20,6 +20,7 @@ public:
 	virtual void intiStruct(int ) = 0;
 	virtual void colorSprite();
 	virtual Position getPosition()const = 0;
+	virtual void updateCurrentBits(int rotation) = 0;
 
 protected:
 	int m_myVertexNumber;

@@ -149,6 +149,7 @@ void Board::makeTheBoard(const std::pair<int, int>& source, std::pair<int, int>&
 
 void Board::buildGraph()
 {
+	//m_graph.resetGraph();
 	for (int i = 0; i < m_rows ; i++)
 		for (int j = 0; j < m_cols; j++)
 		{
@@ -369,6 +370,38 @@ bool Board::ifEndOfLevel() const
 	return false;
 }
 
+void Board::fillPipes(std::vector<int> road)
+{
+	int col, row;
+	/*for (size_t i = 0; i < road.size(); i++)
+	{
+		row = road[i] / m_rows;
+		col = road[i] - row * m_cols;
+		m_currentBoard[row][col]->setFull(true);
+	}*/
+	/*
+	for (size_t i = 0; i < m_rows; i++)
+		for (size_t j = 0; j < m_cols; j++)
+		{
+			auto found = std::find(std::begin(road), std::end(road), m_currentBoard[i][j]->getVertex());
+			if (found != std::end(road))
+				m_currentBoard[i][j]->setFull(true);
+			else
+				m_currentBoard[i][j]->setFull(false);
+		}*/
+	for (size_t i = 0; i < m_rows; i++)
+		for (size_t j = 0; j < m_cols; j++)
+		{
+			m_currentBoard[i][j]->setFull(false);
+		}
+	for (size_t i = 0; i < road.size(); i++)
+	{
+		row = road[i] / m_rows;
+		col = road[i] - row * m_cols;
+		m_currentBoard[row][col]->setFull(true);
+	}
+}
+
 Graph Board::getGraph() const
 {
 	return m_graph;
@@ -389,6 +422,42 @@ std::vector<std::vector<Object*>> Board::getCurrentBoard() const
 	}
 	return tmp;
 }
+
+std::pair<int, int> Board::getTap()
+{
+	return m_tap;
+}
+
+std::pair<int, int> Board::getSink()
+{
+	return m_sink;
+}
+
+int Board::getTapVertexNumber()
+{
+	return m_currentBoard[m_tap.first][m_tap.second]->getVertex();
+}
+
+int Board::getSinkVertexNumber()
+{
+	return m_currentBoard[m_sink.first][m_sink.second]->getVertex();
+}
+
+void Board::updateCurrentBits(int x, int y, int rotation)
+{
+	m_currentBoard[x][y]->updateCurrentBits(rotation);
+}
+
+/*std::vector<std::pair<int, int>> Board::getTaps()
+{
+	std::vector<std::pair<int, int>> taps;
+	for (int i = 0 ; i < m_rows; i++)
+		for (int j = 0; j < m_cols; j++)
+		{
+			if 
+		}
+	return std::vector<std::pair<int, int>>();
+}*/
 
 void Board::rotateTarget(std::pair<int, int>& target, const std::vector<int>& road)
 {

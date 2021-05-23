@@ -22,12 +22,12 @@ public:
 
     void operator=(const Graph& graph);
 
- 
+    void resetGraph();
 
 private:
     int m_vertexAmount;    // No. of vertices
     std::vector<std::list<int>> m_adj;// Pointer to an array containing adjacency lists
-    std::vector<int> m_father;
-    std::vector<int> m_vertex;
+    std::vector<int> m_father; // the father of every vertex in the bfs
+    std::vector<int> m_vertex; // the vertex road from source to target
 };
 
