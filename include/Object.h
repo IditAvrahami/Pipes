@@ -25,6 +25,7 @@ public:
 protected:
 	int m_myVertexNumber;
 	sf::Sprite m_objectPng;
+	sf::Sprite m_objectPngFull;
 	bool m_full;
 
 private:

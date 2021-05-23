@@ -8,7 +8,7 @@
 Object::Object(int x, int indexToPic) : m_myVertexNumber(x), m_full(false)// ,m_objectPng(sf::Sprite)
 {
     m_objectPng = GraphicDesign::instance().getSprite(indexToPic);
-   // m_objectPng.setTexture(GraphicDesign::instance().getPicture(indexToPic));
+    colorSprite();
 }
 
 bool Object::ifFull() const
@@ -52,7 +52,7 @@ void Object::colorObject()
 void Object::colorSprite()
 {
     if(m_full)
-        m_objectPng.setColor(sf::Color::Magenta);
+        m_objectPng.setColor(sf::Color::Blue);
     else
-        m_objectPng.setColor(sf::Color::Black);
+        m_objectPng.setColor(sf::Color::Red);
 }
